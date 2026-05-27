@@ -9,6 +9,9 @@
   --accent: #1a4d8c;
   --accent-hover: #153d70;
   --shell: min(1200px, calc(100% - 48px));
+  --header-offset: 120px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
 
   --sans: 'Segoe UI', system-ui, Roboto, sans-serif;
   --heading: 'Segoe UI', system-ui, Roboto, sans-serif;
@@ -24,7 +27,14 @@
   scroll-behavior: smooth;
 
   @media (max-width: 768px) {
+    --shell: min(1200px, calc(100% - 32px));
+    --header-offset: 148px;
     font-size: 16px;
+  }
+
+  @media (max-width: 480px) {
+    --shell: min(1200px, calc(100% - 24px));
+    --header-offset: 132px;
   }
 }
 
@@ -41,6 +51,7 @@ html {
 body {
   margin: 0;
   background: var(--bg);
+  padding-bottom: var(--safe-bottom);
 }
 
 #root {

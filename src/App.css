@@ -293,7 +293,7 @@
 /* ——— Sections ——— */
 .section {
   padding: clamp(64px, 10vw, 120px) 0;
-  scroll-margin-top: 120px;
+  scroll-margin-top: var(--header-offset);
 }
 
 .section-head {
@@ -453,7 +453,7 @@
 .contact {
   background: var(--text-h);
   color: var(--text-on-dark);
-  scroll-margin-top: 120px;
+  scroll-margin-top: var(--header-offset);
   padding-bottom: 0;
 }
 
@@ -709,23 +709,42 @@
 /* ——— Mobile ——— */
 @media (max-width: 900px) {
   .topbar {
-    flex-wrap: wrap;
-    padding: 14px 16px;
-    gap: 12px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+    padding: calc(12px + var(--safe-top)) 16px 12px;
+    gap: 10px 12px;
   }
 
   .topbar--scrolled {
+    padding: calc(8px + var(--safe-top)) 16px 10px;
+  }
+
+  .brand {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+  }
+
+  .topbar-cta {
+    grid-column: 2;
+    grid-row: 1;
     padding: 10px 16px;
+    font-size: 14px;
+    white-space: nowrap;
   }
 
   .topbar nav {
-    order: 3;
+    grid-column: 1 / -1;
+    grid-row: 2;
     width: 100%;
     gap: 4px;
     overflow-x: auto;
     padding: 4px;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    mask-image: linear-gradient(90deg, #000 92%, transparent);
   }
 
   .topbar nav::-webkit-scrollbar {
@@ -733,33 +752,93 @@
   }
 
   .topbar nav a {
-    padding: 8px 14px;
-    font-size: 13px;
+    min-height: 44px;
+    padding: 10px 16px;
+    font-size: 14px;
     white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
   }
 
   .brand span {
     font-size: 15px;
   }
 
+  .brand img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .topbar--scrolled .brand img {
+    width: 36px;
+    height: 36px;
+  }
+
   .hero-copy {
-    padding: 120px 0 48px;
+    padding: calc(108px + var(--safe-top)) 0 56px;
   }
 
   .hero-copy h1 {
     max-width: none;
+    font-size: clamp(2rem, 9vw, 2.75rem);
+    line-height: 1.05;
+  }
+
+  .lead {
+    font-size: 1.05rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .cta,
+  .ghost {
+    justify-content: center;
+    min-height: 48px;
+    padding: 14px 20px;
+  }
+
+  .section {
+    padding: clamp(48px, 12vw, 80px) 0;
+  }
+
+  .section-head {
+    margin-bottom: 28px;
+  }
+
+  .section-head h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
   }
 
   .story-split {
     grid-template-columns: 1fr;
+    gap: 28px;
   }
 
   .story-image {
     aspect-ratio: 16 / 10;
+    border-radius: 8px;
+  }
+
+  .story-grid {
+    gap: 24px;
+  }
+
+  .section-gallery .section-head {
+    margin-bottom: 20px;
   }
 
   .photo-mosaic {
     grid-template-columns: 1fr 1fr;
+    gap: 3px;
+
+    img {
+      min-height: 160px;
+    }
 
     .tile-a,
     .tile-b,
@@ -769,17 +848,29 @@
     .tile-f {
       grid-column: span 1;
       grid-row: span 1;
-      min-height: 180px;
+      min-height: 160px;
     }
 
     .tile-a {
       grid-column: span 2;
-      min-height: 240px;
+      min-height: 220px;
     }
   }
 
   .event-grid {
     grid-template-columns: 1fr;
+  }
+
+  .event-grid article {
+    padding: 24px 20px;
+  }
+
+  .contact-inner h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .contact-stack {
+    margin-top: 28px;
   }
 
   .field-row {
@@ -788,7 +879,74 @@
   }
 
   .contact-form {
-    padding: 24px 20px 28px;
+    padding: 24px 18px 28px;
     border-radius: 16px;
+    gap: 18px;
+  }
+
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    transform: none;
+  }
+
+  .contact-form button {
+    min-height: 52px;
+  }
+
+  .contact-links {
+    flex-direction: column;
+    align-items: stretch;
+
+    a {
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 18px;
+    }
+  }
+
+  .site-footer {
+    padding-bottom: calc(24px + var(--safe-bottom));
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar {
+    padding-inline: 12px;
+  }
+
+  .brand span {
+    display: none;
+  }
+
+  .topbar-cta {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .hero-copy {
+    padding-top: calc(96px + var(--safe-top));
+  }
+
+  .photo-mosaic {
+    grid-template-columns: 1fr;
+
+    .tile-a,
+    .tile-b,
+    .tile-c,
+    .tile-d,
+    .tile-e,
+    .tile-f {
+      grid-column: span 1;
+      min-height: 200px;
+    }
+
+    .tile-a {
+      min-height: 260px;
+    }
+  }
+
+  .contact-alt {
+    margin-top: 32px;
+    padding-top: 28px;
   }
 }

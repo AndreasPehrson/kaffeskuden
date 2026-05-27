@@ -29,9 +29,13 @@ function App() {
     useState<(typeof NAV_SECTIONS)[number]>('om-os')
 
   useEffect(() => {
-    const headerOffset = 120
+    const getHeaderOffset = () => {
+      const topbar = document.querySelector('.topbar')
+      return (topbar?.getBoundingClientRect().height ?? 120) + 8
+    }
 
     const updateHeader = () => {
+      const headerOffset = getHeaderOffset()
       const scrollTop =
         window.scrollY ||
         document.documentElement.scrollTop ||
