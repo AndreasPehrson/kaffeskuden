@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-/** Custom domain serves at / — never use /repo/ as base in production. */
+/** Custom domain serves at / - never use /repo/ as base in production. */
 function resolveBase() {
   const explicit = process.env.VITE_BASE_PATH
   if (explicit != null && explicit !== '') {

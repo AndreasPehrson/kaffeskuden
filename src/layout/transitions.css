@@ -1,0 +1,110 @@
+/* View Transitions (route changes) */
+@view-transition {
+  navigation: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: page-fade-out 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  ::view-transition-new(root) {
+    animation: page-fade-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+}
+
+@keyframes page-fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-view {
+  min-height: 100%;
+}
+
+/* In-page teaser link to journeys */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: var(--text-h);
+  color: var(--text-on-dark);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 10px 28px rgba(15, 17, 20, 0.12);
+  transition:
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.25s ease,
+    gap 0.25s ease;
+}
+
+.link-arrow::after {
+  content: '→';
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.link-arrow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(15, 17, 20, 0.16);
+  gap: 14px;
+}
+
+.link-arrow:hover::after {
+  transform: translateX(4px);
+}
+
+.link-arrow:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.link-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+  text-decoration: none;
+  transition: gap 0.2s ease, color 0.2s ease;
+}
+
+.link-back::before {
+  content: '←';
+  transition: transform 0.2s ease;
+}
+
+.link-back:hover {
+  color: #fff;
+  gap: 12px;
+}
+
+.link-back:hover::before {
+  transform: translateX(-3px);
+}
+
+.link-back:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 3px;
+  border-radius: 4px;
+}

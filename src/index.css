@@ -26,15 +26,30 @@
 
   scroll-behavior: smooth;
 
+  @media (max-width: 900px) {
+    --header-offset: 88px;
+  }
+
+  @media (max-width: 900px) {
+    body:has(.topbar--with-subnav) {
+      --header-offset: 148px;
+    }
+  }
+
   @media (max-width: 768px) {
     --shell: min(1200px, calc(100% - 32px));
-    --header-offset: 148px;
     font-size: 16px;
   }
 
   @media (max-width: 480px) {
     --shell: min(1200px, calc(100% - 24px));
-    --header-offset: 132px;
+    --header-offset: 88px;
+  }
+
+  @media (max-width: 480px) {
+    body:has(.topbar--with-subnav) {
+      --header-offset: 132px;
+    }
   }
 }
 
@@ -97,4 +112,24 @@ input:focus-visible,
 textarea:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

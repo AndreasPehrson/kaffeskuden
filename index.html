@@ -8,11 +8,26 @@
     />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#0f1114" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+    <script>
+      if (
+        location.protocol === 'http:' &&
+        /(^|\.)kaffeskuden\.dk$/i.test(location.hostname)
+      ) {
+        location.replace(
+          'https://' +
+            location.hostname +
+            location.pathname +
+            location.search +
+            location.hash,
+        )
+      }
+    </script>
 
-    <title>Kaffeskuden — Rullende kaffebar til events</title>
+    <title>Kaffeskuden - kaffe på hjul</title>
     <meta
       name="description"
-      content="Kaffeskuden er en rullende kaffebar med kaffecykel, kaffebil og pop-up barista til firmaevents, markeder, bryllupper og private fester i Danmark."
+      content="Kaffeskuden kører ud med god kaffe til firmaevents, markeder og fester. Roligt tempo, ordentlig espresso - skriv, hvis vi skal køre forbi."
     />
     <link rel="canonical" href="https://kaffeskuden.dk/" />
 
@@ -20,25 +35,25 @@
     <meta property="og:locale" content="da_DK" />
     <meta property="og:site_name" content="Kaffeskuden" />
     <meta property="og:url" content="https://kaffeskuden.dk/" />
-    <meta property="og:title" content="Kaffeskuden — Rullende kaffebar til events" />
+    <meta property="og:title" content="Kaffeskuden - kaffe på hjul" />
     <meta
       property="og:description"
-      content="Rullende kaffebar med specialkaffe på hjul. Book Kaffeskuden til dit næste event, marked eller fest."
+      content="God kaffe på hjul til events og fester. Skriv til os, så finder vi ud af det sammen."
     />
-    <meta property="og:image" content="https://kaffeskuden.dk/hero.jpg" />
+    <meta property="og:image" content="https://kaffeskuden.dk/images/hero.jpg" />
     <meta property="og:image:alt" content="Kaffeskuden serverer kaffe ved et event" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Kaffeskuden — Rullende kaffebar til events" />
+    <meta name="twitter:title" content="Kaffeskuden - kaffe på hjul" />
     <meta
       name="twitter:description"
-      content="Rullende kaffebar med specialkaffe på hjul. Book Kaffeskuden til dit næste event."
+      content="God kaffe på hjul til events og fester. Skriv til os, så finder vi ud af det sammen."
     />
-    <meta name="twitter:image" content="https://kaffeskuden.dk/hero.jpg" />
+    <meta name="twitter:image" content="https://kaffeskuden.dk/images/hero.jpg" />
 
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
-    <link rel="apple-touch-icon" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png" />
+    <link rel="apple-touch-icon" href="/icons/favicon.png" />
 
     <script type="application/ld+json">
       {
@@ -47,9 +62,9 @@
         "@id": "https://kaffeskuden.dk/#organization",
         "name": "Kaffeskuden",
         "url": "https://kaffeskuden.dk/",
-        "image": "https://kaffeskuden.dk/hero.jpg",
-        "logo": "https://kaffeskuden.dk/logo.jpg",
-        "description": "Rullende kaffebar med specialkaffe på hjul til firmaevents, markeder, bryllupper og private fester.",
+        "image": "https://kaffeskuden.dk/images/hero.jpg",
+        "logo": "https://kaffeskuden.dk/brand/logo.jpg",
+        "description": "Kaffe på hjul til firmaevents, markeder og fester i Danmark.",
         "email": "hej@kaffeskuden.dk",
         "telephone": "+4561786779",
         "areaServed": {
@@ -65,24 +80,24 @@
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "Firmaevents",
-                "description": "Pop-up kaffebar til konferencer, kontordage og messer."
+                "name": "På arbejdet",
+                "description": "Kaffe til morgenmøde, messe og firmafest."
               }
             },
             {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "Private fester",
-                "description": "Baristaoplevelse til bryllup, reception og store fejringer."
+                "name": "Private dage",
+                "description": "Kaffe til bryllup, konfirmation og havefest."
               }
             },
             {
               "@type": "Offer",
               "itemOffered": {
                 "@type": "Service",
-                "name": "Byliv og markeder",
-                "description": "Rullende kaffe til offentlige events og markeder."
+                "name": "Markeder og gader",
+                "description": "Kaffe til festival, marked og gadefest."
               }
             }
           ]

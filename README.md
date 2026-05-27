@@ -1,73 +1,62 @@
-# React + TypeScript + Vite
+# Kaffeskuden
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+One-page marketing site for [kaffeskuden.dk](https://kaffeskuden.dk) - Vite, React, TypeScript, static deploy on GitHub Pages.
 
-Currently, two official plugins are available:
+## Project layout
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+.github/workflows/   CI: build + GitHub Pages deploy
+docs/                Launch checklist and notes
+public/
+  images/            Site photos (JPEG + WebP from optimize script)
+  brand/             Logo
+  icons/             Favicons
+  CNAME              Custom domain for Pages
+  robots.txt
+  sitemap.xml
+scripts/             Image optimization (sharp)
+src/
+  content/assets.ts   Image paths and routes
+  content/journeys.ts Vores rejser chapter copy (placeholder)
+  pages/HomePage.tsx  Forside
+  pages/VoresRejserPage.tsx  Rejser + galleri
+  layout/SiteLayout.tsx  Header, scroll-spy, page transitions
+  components/         Shared UI (header, gallery, contact form)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Commands
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev          # local dev server
+npm run build        # production build → dist/
+npm run optimize-images   # compress JPEGs, generate WebP, shrink favicons
+npm run preview      # serve dist/ locally
 ```
+
+## Adding photos
+
+1. Drop new JPEGs in `public/images/` (or `public/brand/` for logo).
+2. Reference paths in `src/content/assets.ts`.
+3. Run `npm run optimize-images` and commit both `.jpg` and `.webp` when generated.
+
+## Instagram feed
+
+Live feed on **Vores rejser** uses [RSS.app](https://rss.app/) — see [docs/INSTAGRAM.md](docs/INSTAGRAM.md).
+
+Do not keep duplicate images in the repo root - assets live only under `public/`.
+
+## Routes
+
+| Path | Page |
+|------|------|
+| `/` | Forside (hero, teaser, events, kontakt) |
+| `/vores-rejser` | Rejser (alternating splits + galleri) |
+
+Client routing uses React Router. `postbuild` copies `index.html` to `404.html` for GitHub Pages SPA fallback.
+
+## Deploy
+
+Push to `main` triggers [.github/workflows/deploy.yml](.github/workflows/deploy.yml) with `VITE_BASE_PATH=/`.
+
+Pre-launch tasks: [docs/LAUNCH.md](docs/LAUNCH.md).

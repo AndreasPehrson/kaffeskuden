@@ -7,12 +7,16 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies & build
 node_modules
 dist
 dist-ssr
 *.local
+.env
+.env.*
+!.env.example
 
-# Editor directories and files
+# Editor
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -23,5 +27,8 @@ dist-ssr
 *.sln
 *.sw?
 
-# Duplicate image copies in repo root (assets live in public/)
+# Site images belong under public/ only (not repo root)
 /*.jpg
+/*.jpeg
+/*.webp
+/*.png
