@@ -42,7 +42,7 @@ npm run preview      # serve dist/ locally
 
 ## Instagram feed
 
-Live feed on **Vores rejser** uses [RSS.app](https://rss.app/) — see [docs/INSTAGRAM.md](docs/INSTAGRAM.md).
+Instagram grid on **Vores rejser** is self-hosted — see [docs/INSTAGRAM.md](docs/INSTAGRAM.md).
 
 Do not keep duplicate images in the repo root - assets live only under `public/`.
 

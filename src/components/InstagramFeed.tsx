@@ -1,15 +1,24 @@
-import { useRef } from 'react'
-import { useExternalScript } from '../hooks/useExternalScript'
-import { useRssAppWallTheme } from '../hooks/useRssAppWallTheme'
-import { RSSAPP_WALL_SCRIPT, rssAppWallId } from '../content/instagram'
+import { instagramFeed, instagramProfileUrl } from '../content/instagram'
+import { PictureImage } from '../PictureImage'
 import './InstagramFeed.css'
 
-const INSTAGRAM_URL = 'https://www.instagram.com/kaffeskuden/'
+function formatUpdated(iso: string | null) {
+  if (!iso) return null
+  try {
+    return new Intl.DateTimeFormat('da-DK', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    }).format(new Date(iso))
+  } catch {
+    return null
+  }
+}
 
 export function InstagramFeed() {
-  const widgetHostRef = useRef<HTMLDivElement>(null)
-  const scriptReady = useExternalScript(RSSAPP_WALL_SCRIPT)
-  const wallReady = useRssAppWallTheme(widgetHostRef, scriptReady)
+  const updatedLabel = instagramFeed.isLive
+    ? formatUpdated(instagramFeed.updatedAt)
+    : null
 
   return (
     <section
@@ -19,43 +28,52 @@ export function InstagramFeed() {
     >
       <header className="shell section-head instagram-feed__head">
         <p className="eyebrow">Instagram</p>
-        <h2 id="instagram-feed-heading">Fra @kaffeskuden</h2>
+        <h2 id="instagram-feed-heading">Fra @{instagramFeed.username}</h2>
         <p>
-          Billeder og små historier fra livet på hjul og ude i verden.
+          {instagramFeed.isLive
+            ? 'Seneste billeder og små historier fra livet på hjul og ude i verden.'
+            : 'Et udvalg fra Kaffeskuden — følg os på Instagram for de nyeste opslag.'}
         </p>
+        {updatedLabel && (
+          <p className="instagram-feed__meta">Opdateret {updatedLabel}</p>
+        )}
         <a
           className="instagram-feed__cta"
-          href={INSTAGRAM_URL}
+          href={instagramProfileUrl}
           rel="noopener noreferrer"
           target="_blank"
         >
-          Følg @kaffeskuden
+          Følg @{instagramFeed.username}
         </a>
       </header>
 
       <div className="shell instagram-feed__frame">
-        <div
-          ref={widgetHostRef}
-          className={`instagram-feed__widget${wallReady ? ' instagram-feed__widget--ready' : ''}`}
-          aria-busy={!wallReady}
-        >
-          {scriptReady ? (
-            <rssapp-wall id={rssAppWallId} />
-          ) : (
-            <div className="instagram-feed__skeleton" aria-hidden="true">
-              {Array.from({ length: 6 }, (_, i) => (
-                <span key={i} className="instagram-feed__skeleton-cell" />
-              ))}
-            </div>
-          )}
-          {scriptReady && !wallReady && (
-            <div className="instagram-feed__skeleton instagram-feed__skeleton--overlay" aria-hidden="true">
-              {Array.from({ length: 6 }, (_, i) => (
-                <span key={i} className="instagram-feed__skeleton-cell" />
-              ))}
-            </div>
-          )}
-        </div>
+        <ul className="instagram-feed__grid">
+          {instagramFeed.posts.map((post) => (
+            <li key={post.id}>
+              <a
+                className="instagram-feed__card"
+                href={post.permalink}
+                rel="noopener noreferrer"
+                target="_blank"
+                aria-label={
+                  post.caption
+                    ? `Åbn på Instagram: ${post.caption}`
+                    : 'Åbn på Instagram'
+                }
+              >
+                <figure className="instagram-feed__figure">
+                  <PictureImage
+                    src={post.image}
+                    alt=""
+                    className="instagram-feed__img"
+                    loading="lazy"
+                  />
+                </figure>
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   )

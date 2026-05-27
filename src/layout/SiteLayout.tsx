@@ -16,7 +16,7 @@ export function SiteLayout() {
   const spySections = onHome
     ? HOME_SECTIONS
     : onJourneys
-      ? (['rejser', 'instagram', 'galleri'] as const)
+      ? (['rejser', 'instagram'] as const)
       : undefined
 
   const { scrolled, scrollProgress, activeSection } = useScrollHeader({

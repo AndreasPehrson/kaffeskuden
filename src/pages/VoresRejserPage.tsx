@@ -3,7 +3,6 @@ import { images } from '../content/assets'
 import { JourneySplit } from '../components/JourneySplit'
 import { PageLink } from '../components/PageLink'
 import { InstagramFeed } from '../components/InstagramFeed'
-import { PhotoGallery } from '../components/PhotoGallery'
 import { PictureImage } from '../PictureImage'
 import './journeys.css'
 
@@ -34,9 +33,9 @@ export function VoresRejserPage() {
             <a className="ghost" href="#rejser">
               Læs videre
             </a>
-            <PageLink className="cta" to="/vores-rejser#galleri">
-              Se galleri
-            </PageLink>
+            <a className="cta" href="#instagram">
+              Se billeder
+            </a>
           </div>
         </div>
       </header>
@@ -57,15 +56,6 @@ export function VoresRejserPage() {
       </div>
 
       <InstagramFeed />
-
-      <section id="galleri" className="section section-gallery">
-        <div className="section-head shell">
-          <p className="eyebrow">Galleri</p>
-          <h2>Sådan ser det ud derude</h2>
-          <p>Billeder fra rejser, events og livet på hjul.</p>
-        </div>
-        <PhotoGallery />
-      </section>
 
       <section className="journeys-cta">
         <div className="shell">

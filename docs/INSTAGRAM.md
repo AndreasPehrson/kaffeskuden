@@ -1,38 +1,36 @@
 # Instagram on the site
 
-We show a live **Instagram wall** on **Vores rejser** via [RSS.app](https://rss.app/).
+The **Vores rejser** page shows a native photo grid (no third-party widget). Posts come from `src/content/instagram-feed.json` and images in `public/images/instagram/`.
 
-## Embed
+## Live feed (recommended)
 
-The wall ID is in `src/content/instagram.ts` (`mHpktXDGwxwACyOr`). To use another wall, set in `.env`:
+1. Use a **Instagram Business or Creator** account for @kaffeskuden.
+2. Create a Meta app and a long-lived **Instagram Graph API** access token.
+3. Add to `.env` (see `.env.example`):
 
-```env
-VITE_RSSAPP_WALL_ID=your_wall_id_here
-```
+   ```env
+   INSTAGRAM_ACCESS_TOKEN=your_token
+   ```
 
-Restart the dev server after changing `.env`.
+4. Run:
 
-## Production (GitHub Pages)
+   ```bash
+   npm run fetch-instagram
+   npm run optimize-images
+   ```
 
-No secret is required unless you override the wall ID. To do that, add repository secret `VITE_RSSAPP_WALL_ID` — the deploy workflow passes it into the build.
+5. Commit the updated `instagram-feed.json` and downloaded JPEGs under `public/images/instagram/`.
 
-In the RSS.app dashboard, allow your domain if the widget asks for it:
+The build shows up to **6** recent posts. Re-run fetch when you want the site grid refreshed (locally or in CI with `INSTAGRAM_ACCESS_TOKEN` as a GitHub secret).
 
-- `kaffeskuden.dk`
-- `www.kaffeskuden.dk`
+## Before the first fetch
 
-## Styling
+If the manifest has no posts, the section shows a **curated teaser grid** (site photos linking to the Instagram profile). After a successful fetch, copy and dates come from Instagram automatically.
 
-The site wraps the wall in a framed section and injects light theme CSS into the widget shadow root (responsive grid, square images, no duplicate caption body).
+## CI (optional)
 
-For the cleanest result, also tune the wall in **RSS.app**:
+To refresh on deploy, add repository secret `INSTAGRAM_ACCESS_TOKEN` and run `npm run fetch-instagram` before `npm run build` in `.github/workflows/deploy.yml`. Tokens expire — refreshing in CI only works if you renew the secret when Meta expires it.
 
-- Prefer a **grid** or **wall** layout (not a long single-column feed)
-- Limit post count (e.g. 6–9) so the section stays scannable
-- Turn off long descriptions in the card template if the dashboard offers it
+## Captions
 
-Captions still come from Instagram; phrases like “Vi kaffes ved” can only be removed by editing or deleting those posts on Instagram.
-
-## Alternative: self-hosted fetch (optional)
-
-`npm run fetch-instagram` + `INSTAGRAM_ACCESS_TOKEN` still exists if you later want images in `public/` without a third-party widget. The live section uses RSS.app only.
+Captions are trimmed in the fetch script (280 characters). Edit posts on Instagram if you need shorter text on the site.

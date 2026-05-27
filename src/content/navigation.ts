@@ -32,7 +32,6 @@ export const mainNav: NavItem[] = [
 export const journeysSubNav = [
   { id: 'rejser', label: 'Historier', hash: '#rejser' },
   { id: 'instagram', label: 'Instagram', hash: '#instagram' },
-  { id: 'galleri', label: 'Galleri', hash: '#galleri' },
 ] as const
 
 export const contactLink = {

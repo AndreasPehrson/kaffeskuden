@@ -436,17 +436,6 @@
   font-size: 1.15rem;
 }
 
-/* Gallery (layout in PhotoGallery.css) */
-.section-gallery {
-  padding-bottom: clamp(48px, 8vw, 72px);
-}
-
-.section-gallery .section-head {
-  width: var(--shell);
-  margin-inline: auto;
-  margin-bottom: clamp(24px, 4vw, 36px);
-}
-
 /* Events */
 .event-section {
   background: linear-gradient(180deg, var(--bg) 0%, var(--surface-soft) 40%, var(--surface-soft) 100%);
