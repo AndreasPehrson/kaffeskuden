@@ -47,6 +47,9 @@ export function SiteHeader({
   const isKontaktActive =
     hash === '#kontakt' || (onHome && activeSection === 'kontakt')
 
+  const subnavHashMatch = journeysSubNav.find((item) => item.hash === hash)
+  const activeSubnavId = subnavHashMatch?.id ?? activeSection
+
   const headerRef = useTopbarHeight()
 
   return (
@@ -111,12 +114,12 @@ export function SiteHeader({
             aria-hidden={subnavLeaving}
           >
             {journeysSubNav.map((item) => {
-              const active = hash === item.hash || activeSection === item.id
+              const active = activeSubnavId === item.id
               return (
                 <PageLink
                   key={item.id}
                   to={{ pathname: '/vores-rejser', hash: item.hash }}
-                  viewTransition
+                  viewTransition={false}
                   className={active ? 'is-active' : undefined}
                   aria-current={active ? 'location' : undefined}
                 >
