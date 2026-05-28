@@ -1,23 +1,43 @@
-import type { CSSProperties } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { brand } from '../content/assets'
 import { contactLink, journeysSubNav, mainNav } from '../content/navigation'
+import type { HeaderMode } from '../hooks/useHeaderMode'
+import { useTopbarHeight } from '../hooks/useTopbarHeight'
+import { SUBNAV_EXIT_MS } from '../lib/motion'
 import { PageLink } from './PageLink'
 
 type SiteHeaderProps = {
+  headerMode: HeaderMode
   scrolled: boolean
   scrollProgress: number
   activeSection?: string
 }
 
 export function SiteHeader({
+  headerMode,
   scrolled,
   scrollProgress,
   activeSection = '',
 }: SiteHeaderProps) {
   const { pathname, hash } = useLocation()
   const onHome = pathname === '/'
-  const onJourneys = pathname.startsWith('/vores-rejser')
+  const journeysChrome = headerMode === 'journeys'
+  const [subnavMounted, setSubnavMounted] = useState(journeysChrome)
+  const subnavLeaving = subnavMounted && !journeysChrome
+
+  useEffect(() => {
+    if (journeysChrome) {
+      setSubnavMounted(true)
+      return
+    }
+    if (!subnavMounted) return
+    const timer = window.setTimeout(() => setSubnavMounted(false), SUBNAV_EXIT_MS)
+    return () => window.clearTimeout(timer)
+  }, [journeysChrome, subnavMounted])
+
+  const showSubnavLayout = journeysChrome || subnavMounted
+  const subpageChrome = journeysChrome || subnavMounted
 
   const isHomeActive =
     onHome &&
@@ -27,9 +47,12 @@ export function SiteHeader({
   const isKontaktActive =
     hash === '#kontakt' || (onHome && activeSection === 'kontakt')
 
+  const headerRef = useTopbarHeight()
+
   return (
     <header
-      className={`topbar${scrolled ? ' topbar--scrolled' : ''}${onJourneys ? ' topbar--subpage' : ''}${onJourneys ? ' topbar--with-subnav' : ''}`}
+      ref={headerRef}
+      className={`topbar${scrolled ? ' topbar--scrolled' : ''}${isKontaktActive ? ' topbar--over-contact' : ''}${subpageChrome ? ' topbar--subpage' : ''}${showSubnavLayout ? ' topbar--with-subnav' : ''}`}
       data-scrolled={scrolled}
     >
       <PageLink className="brand" to="/" aria-label="Kaffeskuden hjem">
@@ -81,8 +104,12 @@ export function SiteHeader({
           })}
         </nav>
 
-        {onJourneys && (
-          <nav className="topbar-subnav" aria-label="På siden Vores rejser">
+        {subnavMounted && (
+          <nav
+            className={`topbar-subnav${subnavLeaving ? ' topbar-subnav--leaving' : ''}`}
+            aria-label="På siden Vores rejser"
+            aria-hidden={subnavLeaving}
+          >
             {journeysSubNav.map((item) => {
               const active = hash === item.hash || activeSection === item.id
               return (

@@ -31,8 +31,8 @@ export function InstagramFeed() {
         <h2 id="instagram-feed-heading">Fra @{instagramFeed.username}</h2>
         <p>
           {instagramFeed.isLive
-            ? 'Seneste billeder og små historier fra livet på hjul og ude i verden.'
-            : 'Et udvalg fra Kaffeskuden — følg os på Instagram for de nyeste opslag.'}
+            ? 'Billeder fra livet på hjul – events, rejser og det, vi laver mellem gæsterne.'
+            : 'Uddrag fra hverdagen på skuden. Følg os på Instagram for det nyeste.'}
         </p>
         {updatedLabel && (
           <p className="instagram-feed__meta">Opdateret {updatedLabel}</p>

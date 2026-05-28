@@ -43,7 +43,7 @@
 .subpage-hero__copy {
   position: relative;
   z-index: 2;
-  padding: calc(120px + var(--safe-top)) 0 clamp(48px, 8vw, 72px);
+  padding: calc(var(--topbar-height, 120px) + 20px) 0 clamp(48px, 8vw, 72px);
   color: var(--text-on-dark);
   max-width: 56ch;
 }
@@ -174,10 +174,6 @@
 @media (max-width: 900px) {
   .subpage-hero {
     min-height: min(65vh, 520px);
-  }
-
-  .subpage-hero__copy {
-    padding-top: calc(116px + var(--safe-top));
   }
 
   .journey-split,

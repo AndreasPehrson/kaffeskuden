@@ -21,8 +21,9 @@ export function HomePage() {
           <p className="tag">Kaffe på hjul</p>
           <h1>God kaffe. Roligt tempo.</h1>
           <p className="lead">
-            Vi kører ud med espresso, baristaer og bønner, vi selv kan lide. Til
-            arbejdsdag, marked eller fest - I skal bare have en god kop.
+            Vi kører ud med espresso, dygtige baristaer og bønner, vi selv vil
+            drikke. Til kontor, messe eller fest – I skal bare have en kop, der
+            smager ordentligt.
           </p>
           <div className="hero-actions">
             <PageLink className="cta" to="/#kontakt">
@@ -39,14 +40,14 @@ export function HomePage() {
         <div className="shell journeys-teaser__grid">
           <div>
             <p className="eyebrow">Vores rejser</p>
-            <h2 id="journeys-teaser-heading">Der hvor bønnerne kommer fra</h2>
+            <h2 id="journeys-teaser-heading">Der hvor bønnerne vokser</h2>
             <p>
-              Vi rejser ikke for at poste kort. Vi rejser for at finde bønner, vi
-              gider brygge på - og for at fortælle jer om det, uden at gøre det
-              større end det er.
+              Vi besøger farme og risterier, smager os frem og tager kun det med
+              hjem, vi har lyst til at servere. Her fortæller vi, hvad vi har set
+              – ét kapitel ad gangen.
             </p>
             <PageLink className="link-arrow" to="/vores-rejser">
-              Læs om vores rejser
+              Læs om rejserne
             </PageLink>
           </div>
           <PictureImage
@@ -59,39 +60,27 @@ export function HomePage() {
 
       <EventTypesSection />
 
-      <section id="kontakt" className="section contact">
-        <div className="shell contact-inner">
-          <p className="eyebrow">Kontakt</p>
-          <h2>Skal vi køre forbi?</h2>
-          <p>
-            Skriv dato, sted og cirka hvor mange I er. Så finder vi ud af resten
-            sammen.
-          </p>
-          <div className="contact-stack">
-            <ContactForm />
-            <div className="contact-alt">
-              <p className="contact-alt-label">Eller bare ring eller skriv</p>
-              <div className="contact-links">
-                <a href="mailto:hej@kaffeskuden.dk">hej@kaffeskuden.dk</a>
-                <a href="tel:+4561786779">+45 61 78 67 79</a>
-                <a
-                  href="https://www.instagram.com/kaffeskuden/"
-                  rel="noopener noreferrer"
-                  target="_blank"
-                >
-                  Instagram
-                </a>
-              </div>
+      <div className="contact-block">
+        <section id="kontakt" className="section contact">
+          <div className="shell contact-inner">
+            <p className="eyebrow">Kontakt</p>
+            <h2>Skal vi køre forbi?</h2>
+            <p>
+              Uanset om det er næste uge eller næste sommer — skriv, så tager vi en
+              snak.
+            </p>
+            <div className="contact-stack">
+              <ContactForm />
             </div>
           </div>
-        </div>
+        </section>
 
-        <footer className="site-footer">
+        <footer className="site-footer site-footer--contact">
           <div className="shell">
             <p>© {new Date().getFullYear()} Kaffeskuden - kaffe på hjul i Danmark.</p>
           </div>
         </footer>
-      </section>
+      </div>
     </main>
   )
 }

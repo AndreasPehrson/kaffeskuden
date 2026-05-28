@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
+import './ContactForm.css'
 
 type FormData = {
   navn: string
@@ -59,66 +60,96 @@ export function ContactForm() {
 
   return (
     <form className="contact-form" onSubmit={handleSubmit} noValidate>
-      <div className="field-row">
-        <label>
-          Navn *
+      <header className="contact-form__head">
+        <h3 className="contact-form__title">Fortæl os om jeres dag</h3>
+        <p className="contact-form__lead">
+          Dato, sted og cirka hvor mange I er — så vender vi tilbage med et forslag.
+        </p>
+      </header>
+
+      <div className="contact-form__fields">
+        <div className="contact-form__row">
+          <label className="contact-form__field">
+            <span className="contact-form__label">Navn *</span>
+            <input
+              type="text"
+              value={formData.navn}
+              onChange={(event) => handleChange('navn', event.target.value)}
+              aria-invalid={Boolean(errors.navn)}
+              placeholder="Fx. Mette"
+              autoComplete="name"
+            />
+            {errors.navn && <span className="contact-form__error">{errors.navn}</span>}
+          </label>
+          <label className="contact-form__field">
+            <span className="contact-form__label">E-mail *</span>
+            <input
+              type="email"
+              value={formData.email}
+              onChange={(event) => handleChange('email', event.target.value)}
+              aria-invalid={Boolean(errors.email)}
+              placeholder="fx. hej@firma.dk"
+              autoComplete="email"
+            />
+            {errors.email && <span className="contact-form__error">{errors.email}</span>}
+          </label>
+        </div>
+
+        <label className="contact-form__field">
+          <span className="contact-form__label">
+            Telefon <span className="contact-form__optional">valgfrit</span>
+          </span>
           <input
-            type="text"
-            value={formData.navn}
-            onChange={(event) => handleChange('navn', event.target.value)}
-            aria-invalid={Boolean(errors.navn)}
-            placeholder="Fx. Mette"
-            autoComplete="name"
+            type="tel"
+            value={formData.telefon}
+            onChange={(event) => handleChange('telefon', event.target.value)}
+            placeholder="+45 61 78 67 79"
+            autoComplete="tel"
           />
-          {errors.navn && <span className="field-error">{errors.navn}</span>}
         </label>
-        <label>
-          E-mail *
-          <input
-            type="email"
-            value={formData.email}
-            onChange={(event) => handleChange('email', event.target.value)}
-            aria-invalid={Boolean(errors.email)}
-            placeholder="fx. hej@firma.dk"
-            autoComplete="email"
+
+        <label className="contact-form__field">
+          <span className="contact-form__label">Besked *</span>
+          <textarea
+            rows={4}
+            value={formData.besked}
+            onChange={(event) => handleChange('besked', event.target.value)}
+            aria-invalid={Boolean(errors.besked)}
+            placeholder="Hvad skal vi stille med? Bryllup, messe, havefest…"
           />
-          {errors.email && <span className="field-error">{errors.email}</span>}
+          {errors.besked && <span className="contact-form__error">{errors.besked}</span>}
         </label>
       </div>
-      <label>
-        Telefon <span className="field-optional">valgfrit</span>
-        <input
-          type="tel"
-          value={formData.telefon}
-          onChange={(event) => handleChange('telefon', event.target.value)}
-          placeholder="+45 61 78 67 79"
-          autoComplete="tel"
-        />
-      </label>
-      <label>
-        Besked *
-        <textarea
-          rows={5}
-          value={formData.besked}
-          onChange={(event) => handleChange('besked', event.target.value)}
-          aria-invalid={Boolean(errors.besked)}
-          placeholder="Dato, sted, antal gæster - og hvad I tænker..."
-        />
-        {errors.besked && <span className="field-error">{errors.besked}</span>}
-      </label>
-      <button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? 'Sender...' : 'Send besked'}
+
+      <button type="submit" className="contact-form__submit" disabled={isSubmitting}>
+        <span>{isSubmitting ? 'Sender…' : 'Send besked'}</span>
+        {!isSubmitting && (
+          <span className="contact-form__submit-arrow" aria-hidden="true">
+            →
+          </span>
+        )}
       </button>
-      <p className="contact-privacy">
-        Vi bruger kun det, I skriver, til at svare jer. Skriv til{' '}
-        <a href="mailto:hej@kaffeskuden.dk">hej@kaffeskuden.dk</a>, hvis I vil have indsigt
-        eller sletning.
-      </p>
+
       {isSubmitted && (
-        <p className="form-success" role="status">
-          Tak for beskeden - vi skriver, når vi har set på den.
+        <p className="contact-form__success" role="status">
+          Tak for beskeden — vi vender tilbage, så snart vi har kigget på den.
         </p>
       )}
+
+      <footer className="contact-form__footer">
+        <p className="contact-form__footer-label">Eller kontakt os direkte</p>
+        <div className="contact-form__channels">
+          <a href="mailto:hej@kaffeskuden.dk">hej@kaffeskuden.dk</a>
+          <a href="tel:+4561786779">+45 61 78 67 79</a>
+          <a
+            href="https://www.instagram.com/kaffeskuden/"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Instagram
+          </a>
+        </div>
+      </footer>
     </form>
   )
 }

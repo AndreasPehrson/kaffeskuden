@@ -4,7 +4,7 @@ type PageLinkProps = LinkProps & {
   children: React.ReactNode
 }
 
-/** In-app link with View Transitions when the browser supports them. */
+/** In-app link; uses View Transitions with RouterProvider (createBrowserRouter). */
 export function PageLink({ children, viewTransition = true, ...props }: PageLinkProps) {
   return (
     <Link viewTransition={viewTransition} {...props}>

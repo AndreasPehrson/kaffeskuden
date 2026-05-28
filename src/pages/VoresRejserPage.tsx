@@ -24,10 +24,10 @@ export function VoresRejserPage() {
             Til forsiden
           </PageLink>
           <p className="tag">Vores rejser</p>
-          <h1>Rejser efter god kaffe</h1>
+          <h1>Vores rejser</h1>
           <p className="lead">
-            Her samler vi historier fra farme, risterier og vejen hjem til skuden.
-            Mere indhold kommer løbende.
+            Smagninger, farme og folk bag bønnerne – og vejen hjem til skuden. Det
+            her er vores notesbog undervejs.
           </p>
           <div className="subpage-hero__actions">
             <a className="ghost" href="#rejser">
@@ -42,10 +42,10 @@ export function VoresRejserPage() {
 
       <div className="journeys-intro shell" id="rejser">
         <p className="eyebrow">Fra farm til kop</p>
-        <h2>Sådan finder vi bønnerne</h2>
+        <h2>Sådan vælger vi bønner</h2>
         <p>
-          Det er ikke én stor mission. Det er en række små besøg, smagninger og
-          samtaler - skrevet ned her, som de kommer.
+          Ingen stor missionsskrift – bare besøg, noter og det, der til sidst ender
+          i espressomaskinen.
         </p>
       </div>
 
@@ -59,8 +59,11 @@ export function VoresRejserPage() {
 
       <section className="journeys-cta">
         <div className="shell">
-          <h2>Klar til en kop?</h2>
-          <p>Book os til jeres næste event - eller skriv, hvis I vil høre mere om bønnerne.</p>
+          <h2>Skal vi køre forbi?</h2>
+          <p>
+            Book os til næste event – eller skriv, hvis I vil høre mere om bønnerne
+            bag kaffen.
+          </p>
           <PageLink className="link-arrow" to="/#kontakt">
             Skriv til os
           </PageLink>

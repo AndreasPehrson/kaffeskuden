@@ -11,10 +11,10 @@ export function EventTypesSection() {
       <div className="shell event-section__inner">
         <header className="event-section__head section-head">
           <p className="eyebrow">Eventtyper</p>
-          <h2 id="eventtyper-heading">Det meste kan vi klare</h2>
+          <h2 id="eventtyper-heading">Hvad vi kører til</h2>
           <p className="event-section__intro">
-            Vi ruller ud til mange slags dage. Her er dem, vi oftest bliver spurgt om -
-            men tøv ikke med at skrive, hvis jeres idé ikke står på listen.
+            Fra morgenmøde til marked. Hvis jeres dag ikke passer i en skærm, skriv
+            alligevel – vi finder ud af det.
           </p>
         </header>
 
@@ -32,7 +32,7 @@ export function EventTypesSection() {
 
         <p className="event-section__foot">
           <PageLink className="event-section__link" to="/#kontakt">
-            Fortæl os om jeres dag
+            Skriv om jeres dag
           </PageLink>
         </p>
       </div>

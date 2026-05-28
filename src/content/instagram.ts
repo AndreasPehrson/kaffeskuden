@@ -16,37 +16,37 @@ export type InstagramPost = {
 const curatedFallback: InstagramPost[] = [
   {
     id: 'curated-truck',
-    caption: 'Kaffeskuden på vejen',
+    caption: 'Kaffeskuden på lokation',
     permalink: instagramProfileUrl,
     image: images.gallery.truck,
   },
   {
     id: 'curated-event',
-    caption: 'Event og stemning',
+    caption: 'Servering ved et event',
     permalink: instagramProfileUrl,
     image: images.gallery.event,
   },
   {
     id: 'curated-barista',
-    caption: 'Barista i arbejde',
+    caption: 'Barista ved espressomaskinen',
     permalink: instagramProfileUrl,
     image: images.gallery.barista,
   },
   {
     id: 'curated-mood',
-    caption: 'Kaffestemning',
+    caption: 'Kaffestemning ved baren',
     permalink: instagramProfileUrl,
     image: images.gallery.mood,
   },
   {
     id: 'curated-guests',
-    caption: 'Gæster ved baren',
+    caption: 'Gæster får kaffe',
     permalink: instagramProfileUrl,
     image: images.gallery.guests,
   },
   {
     id: 'curated-tasting',
-    caption: 'Smagning og oplevelser',
+    caption: 'Smagning af kaffe',
     permalink: instagramProfileUrl,
     image: images.gallery.tasting,
   },

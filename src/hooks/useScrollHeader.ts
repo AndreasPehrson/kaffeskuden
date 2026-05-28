@@ -23,6 +23,12 @@ export function useScrollHeader({
     clearSpyBelowHero && heroCoversHeader ? '' : rawActiveSection
 
   useEffect(() => {
+    setScrolled(false)
+    setScrollProgress(0)
+    setHeroCoversHeader(false)
+  }, [heroSelector])
+
+  useEffect(() => {
     const getHeaderOffset = () => {
       const topbar = document.querySelector('.topbar')
       return (topbar?.getBoundingClientRect().height ?? 120) + 12
@@ -60,7 +66,7 @@ export function useScrollHeader({
       window.removeEventListener('scroll', updateHeader)
       window.removeEventListener('resize', updateHeader)
     }
-  }, [heroSelector])
+  }, [heroSelector, spySections, clearSpyBelowHero])
 
   return { scrolled, scrollProgress, activeSection }
 }

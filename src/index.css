@@ -1,5 +1,6 @@
 :root {
   --text: #5c5f66;
+  --text-muted: #8a8d94;
   --text-h: #0f1114;
   --text-on-dark: #f7f7f5;
   --bg: #fafaf8;
@@ -26,13 +27,17 @@
 
   scroll-behavior: smooth;
 
+  --topbar-height: 120px;
+
   @media (max-width: 900px) {
+    --topbar-height: 88px;
     --header-offset: 88px;
   }
 
   @media (max-width: 900px) {
     body:has(.topbar--with-subnav) {
-      --header-offset: 148px;
+      --topbar-height: 172px;
+      --header-offset: 172px;
     }
   }
 
@@ -48,7 +53,8 @@
 
   @media (max-width: 480px) {
     body:has(.topbar--with-subnav) {
-      --header-offset: 132px;
+      --topbar-height: 168px;
+      --header-offset: 168px;
     }
   }
 }
@@ -122,6 +128,10 @@ textarea:focus-visible {
   ::view-transition-group(*),
   ::view-transition-old(*),
   ::view-transition-new(*) {
+    animation: none !important;
+  }
+
+  .page-view--css-fade {
     animation: none !important;
   }
 

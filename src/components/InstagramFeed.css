@@ -118,7 +118,7 @@
 
 @media (max-width: 480px) {
   .instagram-feed__grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
 
   .instagram-feed__cta {

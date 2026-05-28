@@ -1,14 +1,20 @@
-import { useEffect } from 'react'
+import { useRef } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { SiteHeader } from '../components/SiteHeader'
+import { useHeaderMode } from '../hooks/useHeaderMode'
+import { useRouteScroll } from '../hooks/useRouteScroll'
 import { useScrollHeader } from '../hooks/useScrollHeader'
+import { supportsViewTransitions } from '../lib/viewTransition'
 import '../App.css'
 import './transitions.css'
+
+const useViewTransitions = supportsViewTransitions()
 
 const HOME_SECTIONS = ['om-os', 'kontakt'] as const
 
 export function SiteLayout() {
   const location = useLocation()
+  const headerMode = useHeaderMode()
   const onHome = location.pathname === '/'
   const onJourneys = location.pathname.startsWith('/vores-rejser')
 
@@ -25,38 +31,28 @@ export function SiteLayout() {
     clearSpyBelowHero: onJourneys,
   })
 
-  useEffect(() => {
-    const syncScroll = () => {
-      window.dispatchEvent(new Event('scroll'))
-      window.dispatchEvent(new Event('nav-scroll-sync'))
-    }
+  const exitScrolledRef = useRef(scrolled)
+  if (onJourneys) {
+    exitScrolledRef.current = scrolled
+  }
 
-    if (location.hash) {
-      const id = location.hash.replace(/^#/, '')
-      const el = document.getElementById(id)
-      if (el) {
-        window.setTimeout(() => {
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-          window.setTimeout(syncScroll, 50)
-          window.setTimeout(syncScroll, 450)
-        }, 100)
-        return
-      }
-    }
+  const headerScrolled =
+    onHome && headerMode !== 'home' ? exitScrolledRef.current : scrolled
 
-    window.scrollTo({ top: 0, left: 0 })
-    window.setTimeout(syncScroll, 50)
-    window.setTimeout(syncScroll, 300)
-  }, [location.pathname, location.hash])
+  useRouteScroll(location)
 
   return (
     <div className="page">
       <SiteHeader
-        scrolled={scrolled}
+        headerMode={headerMode}
+        scrolled={headerScrolled}
         scrollProgress={scrollProgress}
         activeSection={activeSection}
       />
-      <div className="page-view" key={location.pathname}>
+      <div
+        className={`page-view${useViewTransitions ? '' : ' page-view--css-fade'}`}
+        key={useViewTransitions ? undefined : location.key}
+      >
         <Outlet />
       </div>
     </div>
