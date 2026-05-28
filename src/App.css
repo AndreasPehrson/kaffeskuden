@@ -780,6 +780,7 @@
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     scroll-padding-inline: 6px;
+    scroll-snap-type: x proximity;
     padding: 3px;
     mask-image: linear-gradient(
       to right,
@@ -792,8 +793,8 @@
 
   .topbar-subnav {
     padding: 2px;
-    background: rgba(0, 0, 0, 0.22);
-    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
   }
 
   .topbar--with-subnav .topbar-nav {
@@ -806,24 +807,26 @@
   }
 
   .topbar-nav a {
-    min-height: 40px;
+    min-height: 44px;
     padding: 8px 12px;
     font-size: 13px;
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
     flex-shrink: 0;
+    scroll-snap-align: start;
   }
 
   .topbar-subnav a {
     min-height: 44px;
     padding: 10px 11px;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
     flex-shrink: 0;
+    scroll-snap-align: start;
   }
 
   .topbar--scrolled .topbar-subnav {
@@ -866,7 +869,7 @@
   }
 
   .hero-copy {
-    padding: calc(88px + var(--safe-top)) 0 56px;
+    padding: calc(var(--topbar-height) + 24px) 0 56px;
   }
 
   .hero-copy h1 {
@@ -957,7 +960,7 @@
   }
 
   .hero-copy {
-    padding-top: calc(84px + var(--safe-top));
+    padding-top: calc(var(--topbar-height) + 24px);
   }
 
 }

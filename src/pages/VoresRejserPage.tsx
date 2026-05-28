@@ -30,11 +30,11 @@ export function VoresRejserPage() {
             her er vores notesbog undervejs.
           </p>
           <div className="subpage-hero__actions">
-            <a className="ghost" href="#rejser">
-              Læs videre
-            </a>
             <a className="cta" href="#instagram">
               Se billeder
+            </a>
+            <a className="ghost" href="#rejser">
+              Læs videre
             </a>
           </div>
         </div>
