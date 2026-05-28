@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useScrollSpy } from './useScrollSpy'
 
 type UseScrollHeaderOptions = {
@@ -22,7 +22,10 @@ export function useScrollHeader({
   const activeSection =
     clearSpyBelowHero && heroCoversHeader ? '' : rawActiveSection
 
+  const scrolledLatchedRef = useRef(false)
+
   useEffect(() => {
+    scrolledLatchedRef.current = false
     setScrolled(false)
     setScrollProgress(0)
     setHeroCoversHeader(false)
@@ -44,8 +47,20 @@ export function useScrollHeader({
 
       const hero = document.querySelector(heroSelector)
       const heroBottom = hero?.getBoundingClientRect().bottom ?? window.innerHeight
-      setScrolled(heroBottom <= headerOffset)
-      setHeroCoversHeader(heroBottom > headerOffset + 24)
+      const coversHeader = heroBottom > headerOffset + 24
+      setHeroCoversHeader(coversHeader)
+
+      if (clearSpyBelowHero) {
+        if (heroBottom <= headerOffset) {
+          scrolledLatchedRef.current = true
+        }
+        if (scrollTop < 8) {
+          scrolledLatchedRef.current = false
+        }
+        setScrolled(scrolledLatchedRef.current)
+      } else {
+        setScrolled(heroBottom <= headerOffset)
+      }
 
       const maxScroll =
         document.documentElement.scrollHeight - window.innerHeight

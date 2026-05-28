@@ -3,6 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom'
 import { brand } from '../content/assets'
 import { contactLink, journeysSubNav, mainNav } from '../content/navigation'
 import type { HeaderMode } from '../hooks/useHeaderMode'
+import { useJourneysSubnavActive } from '../hooks/useJourneysSubnavActive'
 import { useTopbarHeight } from '../hooks/useTopbarHeight'
 import { SUBNAV_EXIT_MS } from '../lib/motion'
 import { PageLink } from './PageLink'
@@ -47,8 +48,7 @@ export function SiteHeader({
   const isKontaktActive =
     hash === '#kontakt' || (onHome && activeSection === 'kontakt')
 
-  const subnavHashMatch = journeysSubNav.find((item) => item.hash === hash)
-  const activeSubnavId = subnavHashMatch?.id ?? activeSection
+  const journeysSubnav = useJourneysSubnavActive(hash, journeysChrome)
 
   const headerRef = useTopbarHeight()
 
@@ -81,12 +81,16 @@ export function SiteHeader({
                 )
               }
 
+              const journeysActive =
+                pathname === item.to || pathname.startsWith(`${item.to}/`)
+
               return (
                 <NavLink
                   key={item.id}
                   to={item.to}
                   viewTransition
-                  className={({ isActive }) => (isActive ? 'is-active' : undefined)}
+                  className={journeysActive ? 'is-active' : undefined}
+                  aria-current={journeysActive ? 'page' : undefined}
                 >
                   {item.label}
                 </NavLink>
@@ -114,12 +118,14 @@ export function SiteHeader({
             aria-hidden={subnavLeaving}
           >
             {journeysSubNav.map((item) => {
-              const active = activeSubnavId === item.id
+              const active = journeysSubnav.isActive(item.id)
               return (
                 <PageLink
                   key={item.id}
                   to={{ pathname: '/vores-rejser', hash: item.hash }}
                   viewTransition={false}
+                  replace
+                  onPointerDown={() => journeysSubnav.select(item.id)}
                   className={active ? 'is-active' : undefined}
                   aria-current={active ? 'location' : undefined}
                 >

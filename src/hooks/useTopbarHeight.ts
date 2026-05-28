@@ -8,10 +8,14 @@ export function useTopbarHeight() {
     const node = headerRef.current
     if (!node) return
 
+    let frame = 0
     const apply = () => {
-      const height = Math.ceil(node.getBoundingClientRect().height)
-      document.documentElement.style.setProperty('--topbar-height', `${height}px`)
-      document.documentElement.style.setProperty('--header-offset', `${height}px`)
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        const height = Math.ceil(node.getBoundingClientRect().height)
+        document.documentElement.style.setProperty('--topbar-height', `${height}px`)
+        document.documentElement.style.setProperty('--header-offset', `${height}px`)
+      })
     }
 
     apply()
@@ -20,6 +24,7 @@ export function useTopbarHeight() {
     window.addEventListener('orientationchange', apply)
 
     return () => {
+      cancelAnimationFrame(frame)
       ro.disconnect()
       window.removeEventListener('orientationchange', apply)
     }

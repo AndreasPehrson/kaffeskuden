@@ -1,4 +1,4 @@
-import { useLayoutEffect } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import type { Location } from 'react-router-dom'
 import { PAGE_TRANSITION_MS } from '../lib/motion'
 
@@ -13,19 +13,33 @@ function scrollToTop() {
 
 /** Scroll + header sync on route change without fighting view transitions. */
 export function useRouteScroll(location: Location) {
+  const pathnameRef = useRef(location.pathname)
+
   useLayoutEffect(() => {
+    const samePageHashJump =
+      pathnameRef.current === location.pathname && Boolean(location.hash)
+    pathnameRef.current = location.pathname
+
     if (location.hash) {
       const id = location.hash.replace(/^#/, '')
       const el = document.getElementById(id)
       if (!el) return
 
       const scrollToHash = () => {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        window.setTimeout(syncNavScroll, 50)
-        window.setTimeout(syncNavScroll, 450)
+        const reducedMotion = window.matchMedia(
+          '(prefers-reduced-motion: reduce)',
+        ).matches
+        el.scrollIntoView({
+          behavior: samePageHashJump || reducedMotion ? 'instant' : 'smooth',
+          block: 'start',
+        })
+        if (!samePageHashJump) {
+          window.setTimeout(syncNavScroll, 50)
+          window.setTimeout(syncNavScroll, 450)
+        }
       }
 
-      window.setTimeout(scrollToHash, 80)
+      window.setTimeout(scrollToHash, samePageHashJump ? 0 : 80)
       return
     }
 

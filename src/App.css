@@ -90,7 +90,12 @@
 
   .topbar-subnav a {
     font-size: 13px;
+    font-weight: 600;
     padding: 8px 14px;
+    transition:
+      color 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   .topbar-nav a:hover,
@@ -821,12 +826,16 @@
     min-height: 44px;
     padding: 10px 11px;
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
     white-space: nowrap;
     display: inline-flex;
     align-items: center;
     flex-shrink: 0;
     scroll-snap-align: start;
+    transition:
+      color 0.2s ease,
+      transform 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   .topbar--scrolled .topbar-subnav {
