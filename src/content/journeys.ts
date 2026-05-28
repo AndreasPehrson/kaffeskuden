@@ -18,7 +18,7 @@ export const journeyChapters: JourneyChapter[] = [
     title: 'Der hvor det begynder',
     lead: 'Farm, høst og hånden, der plukker første gang.',
     body:
-      'Vi starter med jord, højde og årstid – og med folk, der kan fortælle, hvordan bønnen blev til. Det er grunden til, at vi rejser, og det er det, I smager senere.',
+      'Vi starter med jord, højde og årstid - og med folk, der ved, hvor bønnen kommer fra. Det er derfor vi rejser. Det er det, I smager bagefter.',
     image: images.beans,
     imageAlt: 'Rå kaffebønner i hånden',
   },
@@ -38,7 +38,7 @@ export const journeyChapters: JourneyChapter[] = [
     title: 'Folk vi vender tilbage til',
     lead: 'Producenter og risterier i øjenhøjde.',
     body:
-      'Vi arbejder med mennesker, vi kender – og kan stå inde for. Så kan vi fortælle jer, hvem der står bag koppen, uden at pynte på det.',
+      'Vi arbejder med mennesker, vi kender - og kan stå inde for. Så kan vi fortælle jer, hvem der står bag koppen, uden at gøre det større, end det er.',
     image: images.gallery.barista,
     imageAlt: 'Barista ved Kaffeskuden',
   },
@@ -48,7 +48,7 @@ export const journeyChapters: JourneyChapter[] = [
     title: 'Hjem til skuden',
     lead: 'Fra risteri til kop foran jer.',
     body:
-      'Når bønnerne lander hos os, handler det om friskhed, kværn og ro i serveringen. Samme omhu som på rejsen – bare med musik og gæster foran.',
+      'Når bønnerne lander hos os, handler det om friskhed, kværn og ro i serveringen. Samme omhu som på rejsen - bare med musik, gæster og en kø, der bevæger sig.',
     image: images.gallery.truck,
     imageAlt: 'Kaffeskuden på lokation',
   },

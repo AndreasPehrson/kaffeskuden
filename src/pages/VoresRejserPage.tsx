@@ -26,15 +26,15 @@ export function VoresRejserPage() {
           <p className="tag">Vores rejser</p>
           <h1>Vores rejser</h1>
           <p className="lead">
-            Smagninger, farme og folk bag bønnerne – og vejen hjem til skuden. Det
-            her er vores notesbog undervejs.
+            Smagninger, farme og folk bag bønnerne - og vejen hjem til skuden. Tænk
+            på det som vores notesbog: det vi så, smagte og gerne vil huske.
           </p>
           <div className="subpage-hero__actions">
             <a className="cta" href="#instagram">
               Se billeder
             </a>
             <a className="ghost" href="#rejser">
-              Læs videre
+              Læs historierne
             </a>
           </div>
         </div>
@@ -44,7 +44,7 @@ export function VoresRejserPage() {
         <p className="eyebrow">Fra farm til kop</p>
         <h2>Sådan vælger vi bønner</h2>
         <p>
-          Ingen stor missionsskrift – bare besøg, noter og det, der til sidst ender
+          Ingen stor missionsskrift - bare besøg, noter og det, der til sidst ender
           i espressomaskinen.
         </p>
       </div>
@@ -61,8 +61,8 @@ export function VoresRejserPage() {
         <div className="shell">
           <h2>Skal vi køre forbi?</h2>
           <p>
-            Book os til næste event – eller skriv, hvis I vil høre mere om bønnerne
-            bag kaffen.
+            Vil I have os forbi til næste event - eller bare høre mere om bønnerne?
+            Skriv.
           </p>
           <PageLink className="link-arrow" to="/#kontakt">
             Skriv til os

@@ -11,20 +11,20 @@ export const eventTypes: EventType[] = [
     label: 'Firma',
     title: 'På arbejdet',
     description:
-      'Morgenmøde, messe eller sommerfest. Vi sætter op, holder flow i køen og sørger for, at kaffen er klar, når folk kommer.',
+      'Morgenmøde, messe eller sommerfest. Vi sætter op, holder køen i gang og sørger for, at kaffen er klar, når folk dukker op.',
   },
   {
     id: 'privat',
     label: 'Fest',
     title: 'Private dage',
     description:
-      'Bryllup, konfirmation eller havefest. God kaffe tæt på – uden at overdøve dagen.',
+      'Bryllup, konfirmation eller havefest. God kaffe tæt på gæsterne - uden at stjæle showet.',
   },
   {
     id: 'ude',
     label: 'Ude',
     title: 'Markeder og gader',
     description:
-      'Festival, marked eller gadefest. Vi finder pladsen, holder tempo og smiler stadig, når det bliver travlt.',
+      'Festival, marked eller gadefest. Vi finder pladsen og holder tempo, også når køen bliver lang.',
   },
 ]

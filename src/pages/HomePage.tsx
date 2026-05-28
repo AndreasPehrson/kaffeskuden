@@ -21,9 +21,9 @@ export function HomePage() {
           <p className="tag">Kaffe på hjul</p>
           <h1>God kaffe. Roligt tempo.</h1>
           <p className="lead">
-            Vi kører ud med espresso, dygtige baristaer og bønner, vi selv vil
-            drikke. Til kontor, messe eller fest – I skal bare have en kop, der
-            smager ordentligt.
+            Vi kører ud med espresso, baristaer der kan deres craft, og bønner vi
+            selv vil drikke. Kontor, messe eller fest - I skal bare have en kop,
+            der smager ordentligt.
           </p>
           <div className="hero-actions">
             <PageLink className="cta" to="/#kontakt">
@@ -43,11 +43,11 @@ export function HomePage() {
             <h2 id="journeys-teaser-heading">Der hvor bønnerne vokser</h2>
             <p>
               Vi besøger farme og risterier, smager os frem og tager kun det med
-              hjem, vi har lyst til at servere. Her fortæller vi, hvad vi har set
-              – ét kapitel ad gangen.
+              hjem, vi har lyst til at servere. Det skriver vi ned undervejs - ét
+              kapitel ad gangen.
             </p>
             <PageLink className="link-arrow" to="/vores-rejser">
-              Læs om rejserne
+              Se, hvad vi har set
             </PageLink>
           </div>
           <PictureImage
@@ -66,8 +66,8 @@ export function HomePage() {
             <p className="eyebrow">Kontakt</p>
             <h2>Skal vi køre forbi?</h2>
             <p>
-              Uanset om det er næste uge eller næste sommer — skriv, så tager vi en
-              snak.
+              Næste uge eller næste sommer - begge dele er fine. Skriv, så tager vi
+              en snak.
             </p>
             <div className="contact-stack">
               <ContactForm />

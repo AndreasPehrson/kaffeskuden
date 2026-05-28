@@ -63,7 +63,8 @@ export function ContactForm() {
       <header className="contact-form__head">
         <h3 className="contact-form__title">Fortæl os om jeres dag</h3>
         <p className="contact-form__lead">
-          Dato, sted og cirka hvor mange I er — så vender vi tilbage med et forslag.
+          Dato, sted og cirka hvor mange I er. Så vender vi tilbage - typisk inden for
+          et par dage.
         </p>
       </header>
 
@@ -115,7 +116,7 @@ export function ContactForm() {
             value={formData.besked}
             onChange={(event) => handleChange('besked', event.target.value)}
             aria-invalid={Boolean(errors.besked)}
-            placeholder="Hvad skal vi stille med? Bryllup, messe, havefest…"
+            placeholder="Hvad skal vi stille med? Bryllup, messe, havefest, eller noget helt fjerde…"
           />
           {errors.besked && <span className="contact-form__error">{errors.besked}</span>}
         </label>
@@ -132,7 +133,7 @@ export function ContactForm() {
 
       {isSubmitted && (
         <p className="contact-form__success" role="status">
-          Tak for beskeden — vi vender tilbage, så snart vi har kigget på den.
+          Tak - vi har fået den. Vi skriver tilbage, så snart vi har kigget på det.
         </p>
       )}
 
