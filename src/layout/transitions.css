@@ -107,32 +107,24 @@
   outline-offset: 3px;
 }
 
-.link-back {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: rgba(255, 255, 255, 0.85);
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: calc(var(--safe-top) + 8px);
+  z-index: 2000;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: var(--text-h);
+  color: #fff;
+  font-size: 14px;
   font-weight: 600;
   text-decoration: none;
-  transition: gap 0.2s ease, color 0.2s ease;
-}
-
-.link-back::before {
-  content: '←';
+  transform: translateY(calc(-100% - 16px));
   transition: transform 0.2s ease;
 }
 
-.link-back:hover {
-  color: #fff;
-  gap: 12px;
-}
-
-.link-back:hover::before {
-  transform: translateX(-3px);
-}
-
-.link-back:focus-visible {
+.skip-link:focus {
+  transform: translateY(0);
   outline: 2px solid #fff;
-  outline-offset: 3px;
-  border-radius: 4px;
+  outline-offset: 2px;
 }

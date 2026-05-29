@@ -10,6 +10,7 @@
     "optimize-images": "node scripts/optimize-images.mjs",
     "fetch-instagram": "node scripts/fetch-instagram.mjs",
     "convert-logo": "node scripts/convert-logo.mjs",
+    "export-logo": "node scripts/export-logo-png.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

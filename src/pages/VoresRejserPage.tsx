@@ -20,10 +20,7 @@ export function VoresRejserPage() {
           <div className="subpage-hero__scrim" />
         </div>
         <div className="shell subpage-hero__copy">
-          <PageLink className="link-back" to="/">
-            Til forsiden
-          </PageLink>
-          <p className="tag">Vores rejser</p>
+          <p className="tag">Notesbog</p>
           <h1>Vores rejser</h1>
           <p className="lead">
             Smagninger, farme og folk bag bønnerne - og vejen hjem til skuden. Tænk
@@ -59,10 +56,9 @@ export function VoresRejserPage() {
 
       <section className="journeys-cta">
         <div className="shell">
-          <h2>Skal vi køre forbi?</h2>
+          <h2>Klar til næste event?</h2>
           <p>
-            Vil I have os forbi til næste event - eller bare høre mere om bønnerne?
-            Skriv.
+            Vil I have os forbi - eller bare høre mere om bønnerne? Skriv.
           </p>
           <PageLink className="link-arrow" to="/#kontakt">
             Skriv til os

@@ -9,6 +9,7 @@ import { readFile, writeFile, access } from 'node:fs/promises'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
+import { applyOuterMatteTransparency } from './lib/logo-outer-matte.mjs'
 
 const brandDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'public', 'brand')
 const inputPath = join(brandDir, 'logo.jpg')
@@ -20,32 +21,14 @@ try {
   process.exit(1)
 }
 
-function shouldBeTransparent(r, g, b) {
-  const lum = 0.299 * r + 0.587 * g + 0.114 * b
-  if (lum >= 228) return true
-  if (r >= 220 && g >= 220 && b >= 220) return true
-  return false
-}
-
 const inputBuf = await readFile(inputPath)
 
-const { data, info } = await sharp(inputBuf)
-  .resize(300, 300, {
-    fit: 'contain',
-    background: { r: 255, g: 255, b: 255, alpha: 1 },
-  })
-  .ensureAlpha()
-  .raw()
-  .toBuffer({ resolveWithObject: true })
+const { data, info } = await sharp(inputBuf).ensureAlpha().raw().toBuffer({ resolveWithObject: true })
 
 const { width, height, channels } = info
 const pixels = Buffer.from(data)
 
-for (let i = 0; i < pixels.length; i += channels) {
-  if (shouldBeTransparent(pixels[i], pixels[i + 1], pixels[i + 2])) {
-    pixels[i + 3] = 0
-  }
-}
+applyOuterMatteTransparency(pixels, width, height, channels)
 
 const outputPath = join(brandDir, 'logo.png')
 const pngBuf = await sharp(pixels, { raw: { width, height, channels } })

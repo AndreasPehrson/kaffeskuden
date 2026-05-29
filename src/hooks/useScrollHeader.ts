@@ -34,7 +34,7 @@ export function useScrollHeader({
   useEffect(() => {
     const getHeaderOffset = () => {
       const topbar = document.querySelector('.topbar')
-      return (topbar?.getBoundingClientRect().height ?? 120) + 12
+      return (topbar?.getBoundingClientRect().height ?? 120) + 16
     }
 
     const updateHeader = () => {

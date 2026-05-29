@@ -1,44 +1,25 @@
-import { useEffect, useState, type CSSProperties } from 'react'
+import { type CSSProperties } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 import { brand } from '../content/assets'
 import { contactLink, journeysSubNav, mainNav } from '../content/navigation'
-import type { HeaderMode } from '../hooks/useHeaderMode'
 import { useJourneysSubnavActive } from '../hooks/useJourneysSubnavActive'
 import { useTopbarHeight } from '../hooks/useTopbarHeight'
-import { SUBNAV_EXIT_MS } from '../lib/motion'
 import { PageLink } from './PageLink'
 
 type SiteHeaderProps = {
-  headerMode: HeaderMode
   scrolled: boolean
   scrollProgress: number
   activeSection?: string
 }
 
 export function SiteHeader({
-  headerMode,
   scrolled,
   scrollProgress,
   activeSection = '',
 }: SiteHeaderProps) {
   const { pathname, hash } = useLocation()
   const onHome = pathname === '/'
-  const journeysChrome = headerMode === 'journeys'
-  const [subnavMounted, setSubnavMounted] = useState(journeysChrome)
-  const subnavLeaving = subnavMounted && !journeysChrome
-
-  useEffect(() => {
-    if (journeysChrome) {
-      setSubnavMounted(true)
-      return
-    }
-    if (!subnavMounted) return
-    const timer = window.setTimeout(() => setSubnavMounted(false), SUBNAV_EXIT_MS)
-    return () => window.clearTimeout(timer)
-  }, [journeysChrome, subnavMounted])
-
-  const showSubnavLayout = journeysChrome || subnavMounted
-  const subpageChrome = journeysChrome || subnavMounted
+  const onJourneysPage = pathname.startsWith('/vores-rejser')
 
   const isHomeActive =
     onHome &&
@@ -48,18 +29,22 @@ export function SiteHeader({
   const isKontaktActive =
     hash === '#kontakt' || (onHome && activeSection === 'kontakt')
 
-  const journeysSubnav = useJourneysSubnavActive(hash, journeysChrome)
+  const journeysSubnav = useJourneysSubnavActive(
+    hash,
+    onJourneysPage,
+    activeSection,
+  )
 
   const headerRef = useTopbarHeight()
 
   return (
     <header
       ref={headerRef}
-      className={`topbar${scrolled ? ' topbar--scrolled' : ''}${isKontaktActive ? ' topbar--over-contact' : ''}${subpageChrome ? ' topbar--subpage' : ''}${showSubnavLayout ? ' topbar--with-subnav' : ''}`}
+      className={`topbar${scrolled ? ' topbar--scrolled' : ''}${isKontaktActive ? ' topbar--over-contact' : ''}${onJourneysPage ? ' topbar--subpage topbar--with-subnav' : ''}`}
       data-scrolled={scrolled}
     >
       <PageLink className="brand" to="/" aria-label="Kaffeskuden hjem">
-        <img src={brand.logo} alt="Kaffeskuden logo" />
+        <img src={brand.logo} alt="" />
         <span>Kaffeskuden</span>
       </PageLink>
 
@@ -103,7 +88,7 @@ export function SiteHeader({
                 to={item.to}
                 viewTransition
                 className={isKontaktActive ? 'is-active' : undefined}
-                aria-current={isKontaktActive ? 'page' : undefined}
+                aria-current={isKontaktActive ? 'location' : undefined}
               >
                 {item.label}
               </PageLink>
@@ -111,12 +96,8 @@ export function SiteHeader({
           })}
         </nav>
 
-        {subnavMounted && (
-          <nav
-            className={`topbar-subnav${subnavLeaving ? ' topbar-subnav--leaving' : ''}`}
-            aria-label="På siden Vores rejser"
-            aria-hidden={subnavLeaving}
-          >
+        {onJourneysPage && (
+          <nav className="topbar-subnav" aria-label="På siden Vores rejser">
             {journeysSubNav.map((item) => {
               const active = journeysSubnav.isActive(item.id)
               return (

@@ -1,5 +1,4 @@
 import { eventTypes } from '../content/events'
-import { PageLink } from './PageLink'
 
 export function EventTypesSection() {
   return (
@@ -29,12 +28,6 @@ export function EventTypesSection() {
             </li>
           ))}
         </ul>
-
-        <p className="event-section__foot">
-          <PageLink className="event-section__link" to="/#kontakt">
-            Fortæl om jeres dag
-          </PageLink>
-        </p>
       </div>
     </section>
   )

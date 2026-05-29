@@ -18,7 +18,7 @@ export type NavItem =
 
 /** Primary site navigation (all pages). */
 export const mainNav: NavItem[] = [
-  { id: 'hjem', label: 'Hjem', to: routes.home, kind: 'page', end: true },
+  { id: 'hjem', label: 'Hjem', to: routes.home, kind: 'page' },
   { id: 'rejser', label: 'Vores rejser', to: routes.journeys, kind: 'page' },
   {
     id: 'kontakt',

@@ -1,21 +1,30 @@
+import { useRef } from 'react'
 import { images } from '../content/assets'
 import { ContactForm } from '../components/ContactForm'
 import { EventTypesSection } from '../components/EventTypesSection'
 import { PageLink } from '../components/PageLink'
 import { PictureImage } from '../PictureImage'
+import { useHeroParallax } from '../hooks/useHeroParallax'
+import './journeys.css'
 
 export function HomePage() {
+  const heroRef = useRef<HTMLElement>(null)
+  const heroLayerRef = useRef<HTMLDivElement>(null)
+  useHeroParallax(heroRef, heroLayerRef)
+
   return (
     <main id="indhold">
-      <section className="hero-full" id="om-os">
+      <section className="hero-full" id="om-os" ref={heroRef}>
         <div className="hero-media">
-          <PictureImage
-            src={images.hero}
-            alt="Kaffeskuden serverer espresso ved et udendørs event"
-            loading="eager"
-            fetchPriority="high"
-          />
-          <div className="hero-scrim" />
+          <div className="hero-media__layer" ref={heroLayerRef}>
+            <PictureImage
+              src={images.hero}
+              alt="Kaffeskuden serverer espresso ved et udendørs event"
+              loading="eager"
+              fetchPriority="high"
+            />
+            <div className="hero-scrim" />
+          </div>
         </div>
         <div className="shell hero-copy">
           <p className="tag">Kaffe på hjul</p>
