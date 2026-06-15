@@ -17,7 +17,7 @@ const inputPath = join(brandDir, 'logo.jpg')
 try {
   await access(inputPath)
 } catch {
-  console.error('Missing public/brand/logo.jpg — add the source JPEG first.')
+  console.error('Missing public/brand/logo.jpg - add the source JPEG first.')
   process.exit(1)
 }
 

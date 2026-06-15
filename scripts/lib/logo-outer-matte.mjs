@@ -9,7 +9,7 @@ function pixelLumChroma(r, g, b) {
   return { lum, chroma }
 }
 
-/** Solid black ring / logo ink — flood cannot pass through. */
+/** Solid black ring / logo ink - flood cannot pass through. */
 function isLogoBarrier(r, g, b) {
   const { lum, chroma } = pixelLumChroma(r, g, b)
   return lum < 88 || (lum < 115 && chroma < 28)

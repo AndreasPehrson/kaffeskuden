@@ -7,13 +7,13 @@
  * Only the outer white JPEG border is removed; white inside the logo is kept.
  *
  * Source priority (first file that exists):
- *   public/brand/logo-master.png | logo-master.jpg  — use this for print/slides (1024px+ recommended)
+ *   public/brand/logo-master.png | logo-master.jpg - use this for print/slides (1024px+ recommended)
  *   public/brand/logo.jpg
  *
- * Outputs (only at or below source resolution — no fake upscales):
+ * Outputs (only at or below source resolution - no fake upscales):
  *   kaffeskuden-logo-transparent.png
- *   kaffeskuden-logo-transparent-512.png   — only if source width ≥ 512
- *   kaffeskuden-logo-transparent-1024.png  — only if source width ≥ 1024
+ *   kaffeskuden-logo-transparent-512.png - only if source width ≥ 512
+ *   kaffeskuden-logo-transparent-1024.png - only if source width ≥ 1024
  */
 
 import { readFile, writeFile, access, unlink } from 'node:fs/promises'

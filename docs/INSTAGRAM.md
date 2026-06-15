@@ -29,7 +29,7 @@ If the manifest has no posts, the section shows a **curated teaser grid** (site 
 
 ## CI (optional)
 
-To refresh on deploy, add repository secret `INSTAGRAM_ACCESS_TOKEN` and run `npm run fetch-instagram` before `npm run build` in `.github/workflows/deploy.yml`. Tokens expire — refreshing in CI only works if you renew the secret when Meta expires it.
+To refresh on deploy, add repository secret `INSTAGRAM_ACCESS_TOKEN` and run `npm run fetch-instagram` before `npm run build` in `.github/workflows/deploy.yml`. Tokens expire - refreshing in CI only works if you renew the secret when Meta expires it.
 
 ## Captions
 

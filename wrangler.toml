@@ -1,0 +1,13 @@
+name = "kaffeskuden-contact"
+main = "workers/contact.ts"
+compatibility_date = "2024-11-01"
+
+# API subdomain (works while apex DNS points at GitHub Pages)
+[[routes]]
+pattern = "api.kaffeskuden.dk"
+custom_domain = true
+
+[vars]
+CONTACT_FROM = "Kaffeskuden <kontakt@kaffeskuden.dk>"
+CONTACT_TO = "kontakt@kaffeskuden.dk"
+ALLOWED_ORIGINS = "https://kaffeskuden.dk,https://www.kaffeskuden.dk,http://localhost:5173"

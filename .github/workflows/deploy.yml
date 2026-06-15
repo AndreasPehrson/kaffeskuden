@@ -30,6 +30,7 @@ jobs:
       - run: npm run build
         env:
           VITE_BASE_PATH: /
+          VITE_CONTACT_API_URL: https://api.kaffeskuden.dk
 
       - uses: actions/upload-pages-artifact@v3
         with:

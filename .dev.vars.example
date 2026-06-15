@@ -1,0 +1,5 @@
+RESEND_API_KEY=
+CONTACT_TO=kontakt@kaffeskuden.dk
+# Local dev: use sandbox until kaffeskuden.dk is verified in Resend
+CONTACT_FROM=Kaffeskuden <onboarding@resend.dev>
+# Production sender (wrangler.toml): Kaffeskuden <kontakt@kaffeskuden.dk>

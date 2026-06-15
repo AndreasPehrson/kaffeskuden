@@ -10,7 +10,7 @@ export type JourneyChapter = {
   imageAlt: string
 }
 
-/** Placeholder chapters – replace with real stories as trips are documented. */
+/** Placeholder chapters - replace with real stories as trips are documented. */
 export const journeyChapters: JourneyChapter[] = [
   {
     id: 'origine',

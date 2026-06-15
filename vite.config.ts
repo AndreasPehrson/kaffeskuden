@@ -18,4 +18,12 @@ function resolveBase() {
 export default defineConfig({
   base: resolveBase(),
   plugins: [react()],
+  server: {
+    proxy: {
+      '/api/contact': {
+        target: 'http://127.0.0.1:8787',
+        changeOrigin: true,
+      },
+    },
+  },
 })

@@ -648,7 +648,7 @@
   background: rgba(0, 0, 0, 0.45);
 }
 
-/* Mobile — one row: logo + nav; CTA hidden (Kontakt in nav). Journeys add subnav row. */
+/* Mobile - one row: logo + nav; CTA hidden (Kontakt in nav). Journeys add subnav row. */
 @media (max-width: 900px) {
   .topbar {
     display: flex;
