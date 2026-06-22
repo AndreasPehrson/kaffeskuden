@@ -1,5 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom'
 import { SiteHeader } from '../components/SiteHeader'
+import { usePageAnalytics } from '../hooks/usePageAnalytics'
 import { useRouteScroll } from '../hooks/useRouteScroll'
 import { useScrollHeader } from '../hooks/useScrollHeader'
 import { supportsViewTransitions } from '../lib/viewTransition'
@@ -29,6 +30,7 @@ export function SiteLayout() {
   })
 
   useRouteScroll(location)
+  usePageAnalytics()
 
   return (
     <div className="page">

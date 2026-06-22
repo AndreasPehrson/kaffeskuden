@@ -31,6 +31,7 @@ jobs:
         env:
           VITE_BASE_PATH: /
           VITE_CONTACT_API_URL: https://api.kaffeskuden.dk
+          VITE_GA_MEASUREMENT_ID: ${{ secrets.VITE_GA_MEASUREMENT_ID }}
 
       - uses: actions/upload-pages-artifact@v3
         with:

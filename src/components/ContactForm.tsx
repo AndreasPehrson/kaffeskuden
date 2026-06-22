@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import type { FormEvent, ReactNode } from 'react'
+import { trackEvent } from '../lib/analytics'
 import './ContactForm.css'
 
 const MIN_FORM_MS = 2500
@@ -175,6 +176,7 @@ export function ContactForm() {
       }
 
       setPhase('success')
+      trackEvent('contact_form_submit')
       setFormData({
         navn: '',
         email: '',
