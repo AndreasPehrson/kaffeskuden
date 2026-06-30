@@ -10,6 +10,10 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
 import { applyOuterMatteTransparency } from './lib/logo-outer-matte.mjs'
+import {
+  applyCircularMaskTransparency,
+  isBlackMatteSource,
+} from './lib/logo-circular-mask.mjs'
 
 const brandDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'public', 'brand')
 const inputPath = join(brandDir, 'logo.jpg')
@@ -28,7 +32,11 @@ const { data, info } = await sharp(inputBuf).ensureAlpha().raw().toBuffer({ reso
 const { width, height, channels } = info
 const pixels = Buffer.from(data)
 
-applyOuterMatteTransparency(pixels, width, height, channels)
+if (isBlackMatteSource(pixels, width, height, channels)) {
+  applyCircularMaskTransparency(pixels, width, height, channels)
+} else {
+  applyOuterMatteTransparency(pixels, width, height, channels)
+}
 
 const outputPath = join(brandDir, 'logo.png')
 const pngBuf = await sharp(pixels, { raw: { width, height, channels } })

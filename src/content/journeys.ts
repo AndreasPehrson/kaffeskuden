@@ -19,16 +19,16 @@ export const journeyChapters: JourneyChapter[] = [
     lead: 'Farm, høst og hånden, der plukker første gang.',
     body:
       'Vi starter med jord, højde og årstid - og med folk, der ved, hvor bønnen kommer fra. Det er derfor vi rejser. Det er det, I smager bagefter.',
-    image: images.beans,
-    imageAlt: 'Rå kaffebønner i hånden',
+    image: images.journeys.origin,
+    imageAlt: 'Kaffebønner tørrer i solen på en farm',
   },
   {
     id: 'smag',
     step: '02',
     title: 'Smag først',
-    lead: 'Cupping, noter og et roligt nej.',
+    lead: 'Smagning, noter og kun det, der er godt nok.',
     body:
-      'Vi smager mange lotter og vælger få. Det skal passe til espresso på hjul: balanceret, tydeligt og stadig godt, når dagen er lang.',
+      'Vi smager mange bønner og vælger få. Det skal passe til espresso på hjul: balanceret, tydeligt og stadig godt, når dagen er lang.',
     image: images.gallery.tasting,
     imageAlt: 'Smagning af kaffe',
   },
@@ -39,8 +39,8 @@ export const journeyChapters: JourneyChapter[] = [
     lead: 'Producenter og risterier i øjenhøjde.',
     body:
       'Vi arbejder med mennesker, vi kender - og kan stå inde for. Så kan vi fortælle jer, hvem der står bag koppen, uden at gøre det større, end det er.',
-    image: images.gallery.barista,
-    imageAlt: 'Barista ved Kaffeskuden',
+    image: images.journeys.serving,
+    imageAlt: 'Barista serverer en kop kaffe',
   },
   {
     id: 'vejen-hjem',
@@ -49,7 +49,7 @@ export const journeyChapters: JourneyChapter[] = [
     lead: 'Fra risteri til kop foran jer.',
     body:
       'Når bønnerne lander hos os, handler det om friskhed, kværn og ro i serveringen. Samme omhu som på rejsen - bare med musik, gæster og en kø, der bevæger sig.',
-    image: images.gallery.truck,
-    imageAlt: 'Kaffeskuden på lokation',
+    image: images.journeys.truck,
+    imageAlt: 'Kaffeskuden på lokation med espressomaskine',
   },
 ]

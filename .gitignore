@@ -34,3 +34,11 @@ dist-ssr
 /*.jpeg
 /*.webp
 /*.png
+
+# Editor / local tooling
+.cursor/
+
+# Accidental saves & backups
+*.bak
+*Gyazo*
+/Test

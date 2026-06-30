@@ -10,6 +10,11 @@ export const brand = {
 export const images = {
   hero: '/images/hero.jpg',
   beans: '/images/bønner.jpg',
+  journeys: {
+    origin: '/images/origin.jpg',
+    serving: '/images/rejse-servering.jpg',
+    truck: '/images/rejse-skuden.jpg',
+  },
   gallery: {
     truck: '/images/skuden.jpg',
     event: '/images/stemning3.jpg',
@@ -27,6 +32,7 @@ export const images = {
 export const imagesWithWebp = new Set<string>([
   images.hero,
   images.beans,
+  ...Object.values(images.journeys),
   ...Object.values(images.gallery),
 ])
 

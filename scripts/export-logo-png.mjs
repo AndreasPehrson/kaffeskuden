@@ -4,7 +4,8 @@
  *
  * Run: npm run export-logo
  *
- * Only the outer white JPEG border is removed; white inside the logo is kept.
+ * White-matte JPEGs: only the outer white border is removed.
+ * Black-matte circular badges (e.g. Facebook OG): clipped to a circle.
  *
  * Source priority (first file that exists):
  *   public/brand/logo-master.png | logo-master.jpg - use this for print/slides (1024px+ recommended)
@@ -21,6 +22,10 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import sharp from 'sharp'
 import { applyOuterMatteTransparency } from './lib/logo-outer-matte.mjs'
+import {
+  applyCircularMaskTransparency,
+  isBlackMatteSource,
+} from './lib/logo-circular-mask.mjs'
 
 const brandDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'public', 'brand')
 
@@ -68,7 +73,11 @@ async function exportLogo(inputPath, size, outputName) {
   const { width, height, channels } = info
   const pixels = Buffer.from(data)
 
-  applyOuterMatteTransparency(pixels, width, height, channels)
+  if (isBlackMatteSource(pixels, width, height, channels)) {
+    applyCircularMaskTransparency(pixels, width, height, channels)
+  } else {
+    applyOuterMatteTransparency(pixels, width, height, channels)
+  }
 
   const trimmed = await sharp(pixels, { raw: { width, height, channels } })
     .png({ compressionLevel: 9, adaptiveFiltering: true })

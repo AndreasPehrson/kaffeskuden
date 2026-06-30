@@ -11,11 +11,13 @@
     "fetch-instagram": "node scripts/fetch-instagram.mjs",
     "convert-logo": "node scripts/convert-logo.mjs",
     "export-logo": "node scripts/export-logo-png.mjs",
+    "generate-qr": "node scripts/generate-qr.mjs",
     "lint": "eslint .",
     "preview": "vite preview",
     "worker:dev": "wrangler dev",
     "worker:deploy": "wrangler deploy",
-    "worker:setup": "node scripts/setup-contact-worker.mjs"
+    "worker:setup": "node scripts/setup-contact-worker.mjs",
+    "dns:dmarc": "node scripts/add-dmarc-dns.mjs"
   },
   "dependencies": {
     "react": "^19.2.6",
@@ -32,6 +34,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.6.0",
+    "qrcode": "^1.5.4",
     "sharp": "^0.34.5",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
