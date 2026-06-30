@@ -1,6 +1,6 @@
-/* Route changes: cross-fade main content only. */
+/* Route changes: cross-fade main content only (desktop). */
 @view-transition {
-  navigation: auto;
+  navigation: none;
 }
 
 ::view-transition-old(root),
@@ -19,9 +19,16 @@
     animation: page-fade-in 0.56s cubic-bezier(0.33, 1, 0.68, 1) both;
   }
 
-  @media (hover: none) and (pointer: coarse) {
+  @media (max-width: 900px) {
     .page-view--css-fade {
       animation: page-fade-in-mobile 0.32s ease both;
+    }
+
+    ::view-transition-old(page),
+    ::view-transition-new(page) {
+      animation: page-fade-in-mobile 0.32s ease both;
+      filter: none;
+      transform: none;
     }
   }
 
