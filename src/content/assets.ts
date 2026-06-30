@@ -16,11 +16,11 @@ export const images = {
     truck: '/images/rejse-skuden.jpg',
   },
   gallery: {
-    truck: '/images/skuden.jpg',
-    event: '/images/stemning3.jpg',
+    truck: '/images/rejse-skuden.jpg',
+    event: '/images/rejse-servering.jpg',
     barista: '/images/niclas.jpg',
     mood: '/images/stemning.jpg',
-    guests: '/images/stemning2.jpg',
+    guests: '/images/hero.jpg',
     tasting: '/images/test-smagning.jpg',
   },
 } as const

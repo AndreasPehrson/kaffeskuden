@@ -22,7 +22,7 @@ const curatedFallback: InstagramPost[] = [
   },
   {
     id: 'curated-event',
-    caption: 'Servering ved et event',
+    caption: 'Barista ved skuden',
     permalink: instagramProfileUrl,
     image: images.gallery.event,
   },
