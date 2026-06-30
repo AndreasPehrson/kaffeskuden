@@ -19,6 +19,12 @@
     animation: page-fade-in 0.56s cubic-bezier(0.33, 1, 0.68, 1) both;
   }
 
+  @media (hover: none) and (pointer: coarse) {
+    .page-view--css-fade {
+      animation: page-fade-in-mobile 0.32s ease both;
+    }
+  }
+
   ::view-transition-group(page) {
     animation-duration: 0.56s;
     animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
@@ -64,6 +70,15 @@
     opacity: 1;
     transform: translateY(0) scale(1);
     filter: blur(0);
+  }
+}
+
+@keyframes page-fade-in-mobile {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 

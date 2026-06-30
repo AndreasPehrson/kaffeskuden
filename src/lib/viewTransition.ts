@@ -2,5 +2,8 @@
 export function supportsViewTransitions() {
   if (typeof document === 'undefined') return false
   if (!('startViewTransition' in document)) return false
-  return !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false
+  // Blur + large image snapshots often crash mobile Chrome ("repeated problems" tab kill).
+  if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) return false
+  return true
 }

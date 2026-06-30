@@ -4,6 +4,7 @@ import { brand } from '../content/assets'
 import { contactLink, journeysSubNav, mainNav } from '../content/navigation'
 import { useJourneysSubnavActive } from '../hooks/useJourneysSubnavActive'
 import { useTopbarHeight } from '../hooks/useTopbarHeight'
+import { supportsViewTransitions } from '../lib/viewTransition'
 import { PageLink } from './PageLink'
 
 type SiteHeaderProps = {
@@ -36,6 +37,7 @@ export function SiteHeader({
   )
 
   const headerRef = useTopbarHeight()
+  const pageTransition = supportsViewTransitions()
 
   return (
     <header
@@ -57,7 +59,7 @@ export function SiteHeader({
                   <PageLink
                     key={item.id}
                     to={item.to}
-                    viewTransition
+                    viewTransition={pageTransition}
                     className={isHomeActive ? 'is-active' : undefined}
                     aria-current={isHomeActive ? 'page' : undefined}
                   >
@@ -73,7 +75,7 @@ export function SiteHeader({
                 <NavLink
                   key={item.id}
                   to={item.to}
-                  viewTransition
+                  viewTransition={pageTransition}
                   className={journeysActive ? 'is-active' : undefined}
                   aria-current={journeysActive ? 'page' : undefined}
                 >
@@ -86,7 +88,7 @@ export function SiteHeader({
               <PageLink
                 key={item.id}
                 to={item.to}
-                viewTransition
+                viewTransition={pageTransition}
                 className={isKontaktActive ? 'is-active' : undefined}
                 aria-current={isKontaktActive ? 'location' : undefined}
               >
